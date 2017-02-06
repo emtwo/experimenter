@@ -1,4 +1,4 @@
-build: 
+build:
 	./scripts/build.sh
 
 compose_build: build
@@ -8,7 +8,7 @@ up: compose_build
 	docker-compose up
 
 test: compose_build
-	docker-compose run app bash -c "coverage run manage.py test;coverage report -m --fail-under=100" 
+	docker-compose run app sh -c "coverage run manage.py test;coverage report -m --fail-under=100"
 
 lint: compose_build
 	docker-compose run app flake8 .
@@ -22,5 +22,5 @@ migrate: compose_build
 shell: compose_build
 	docker-compose run app python manage.py shell
 
-bash: compose_build
-	docker-compose run app bash
+sh: compose_build
+	docker-compose run app sh
